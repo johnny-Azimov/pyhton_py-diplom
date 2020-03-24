@@ -13,7 +13,7 @@ class VkUser:
     def get_user_id(self):
         if self.data is None:
             self.data = input('Введите имя пользователя или его ID:  \n')
-        time.sleep(0.111)
+        time.sleep(0.7)
         user_params = {
             'user_ids': str(self.data),
             'fields': 'screen_name,user_id',
@@ -41,7 +41,7 @@ class VkUser:
         return params
 
     def get_friends_list(self):
-        time.sleep(0.111)
+        time.sleep(0.7)
         friends_response = requests.get(
             'https://api.vk.com/method/friends.get',
             params=self.set_params()
@@ -51,7 +51,7 @@ class VkUser:
         return friends_list
 
     def get_groups_list(self):
-        time.sleep(0.111)
+        time.sleep(0.7)
         groups_response = requests.get(
             'https://api.vk.com/method/groups.get',
             params=self.set_params()
@@ -64,7 +64,7 @@ class VkUser:
         groups_list = self.get_groups_list()
         group_membership = {}
         for group in groups_list:
-            time.sleep(0.111)
+            time.sleep(0.7)
             print(f'\rОбрабатывается {groups_list.index(group) + 1} ', end="", flush=True)
             membershipg_params = {
                 'group_id': f'{group}',
@@ -104,7 +104,7 @@ class VkUser:
         group_media = []
         print('\n')
         for group in groups:
-            time.sleep(0.111)
+            time.sleep(0.7)
             print(f'\rЗапись: {groups.index(group) + 1} группа из {len(groups)}', end="", flush=True)
             group_params = {'group_id': str(group),
                          'fields': ['id', 'name', 'description',
